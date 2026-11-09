@@ -2416,7 +2416,10 @@ main {
   background: var(--bg-surface);
   box-shadow: var(--shadow-modal);
   width: 90%;
-  max-width: 540px;
+  max-width: 500px;
+  max-height: min(92vh, 680px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .pilot-dialog::backdrop {
@@ -2426,7 +2429,7 @@ main {
 }
 
 .pilot-dialog-content {
-  padding: 36px;
+  padding: 28px 32px 32px;
 }
 
 .pilot-dialog-header {

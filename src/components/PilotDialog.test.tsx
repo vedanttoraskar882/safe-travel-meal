@@ -16,30 +16,35 @@ beforeEach(() => {
 });
 
 describe("PilotDialog Component", () => {
-  it("renders all four required fields with correct autocomplete and disclosure", () => {
+  it("renders all four required fields with correct autocomplete and without placeholders or browser disclosure", () => {
     render(<PilotDialog isOpen={true} onClose={() => {}} triggerElement={null} />);
 
     const nameInput = screen.getByLabelText(/Full Name/i);
     expect(nameInput).toHaveAttribute("autocomplete", "name");
     expect(nameInput).toBeRequired();
+    expect(nameInput).not.toHaveAttribute("placeholder");
 
     const phoneInput = screen.getByLabelText(/Phone Number/i);
     expect(phoneInput).toHaveAttribute("autocomplete", "tel");
     expect(phoneInput).toBeRequired();
+    expect(phoneInput).not.toHaveAttribute("placeholder");
 
     const emailInput = screen.getByLabelText(/Email Address/i);
     expect(emailInput).toHaveAttribute("autocomplete", "email");
     expect(emailInput).toBeRequired();
+    expect(emailInput).not.toHaveAttribute("placeholder");
 
     const orgInput = screen.getByLabelText(/Organisation Name/i);
     expect(orgInput).toHaveAttribute("autocomplete", "organization");
     expect(orgInput).toBeRequired();
+    expect(orgInput).not.toHaveAttribute("placeholder");
 
+    // The sentence must NOT be in the document
     expect(
-      screen.getByText(
+      screen.queryByText(
         /This demo saves your details only in this browser. Your request will not be sent to Safe Travel Meal Kits Limited./i
       )
-    ).toBeInTheDocument();
+    ).not.toBeInTheDocument();
 
     expect(screen.getByRole("button", { name: /Save pilot request/i })).toBeInTheDocument();
   });

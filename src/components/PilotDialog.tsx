@@ -35,9 +35,11 @@ export const PilotDialog: React.FC<PilotDialogProps> = ({
       }
       setStatus("idle");
       setValidationError(null);
-      // Move focus into the form
+      // Ensure dialog is scrolled to top on open
+      dialog.scrollTop = 0;
+      // Move focus into the form without causing unwanted viewport jumps
       setTimeout(() => {
-        firstInputRef.current?.focus();
+        firstInputRef.current?.focus({ preventScroll: true });
       }, 50);
     } else {
       if (dialog.open) {
@@ -205,7 +207,6 @@ export const PilotDialog: React.FC<PilotDialogProps> = ({
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               className="form-input"
-              placeholder="e.g. Eleanor Vance"
               disabled={isSubmitting}
             />
           </div>
@@ -223,7 +224,6 @@ export const PilotDialog: React.FC<PilotDialogProps> = ({
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               className="form-input"
-              placeholder="e.g. +44 20 7946 0912"
               disabled={isSubmitting}
             />
             <span className="form-hint">
@@ -244,7 +244,6 @@ export const PilotDialog: React.FC<PilotDialogProps> = ({
               value={emailAddress}
               onChange={(e) => setEmailAddress(e.target.value)}
               className="form-input"
-              placeholder="e.g. e.vance@example.co.uk"
               disabled={isSubmitting}
             />
           </div>
@@ -262,15 +261,8 @@ export const PilotDialog: React.FC<PilotDialogProps> = ({
               value={organisationName}
               onChange={(e) => setOrganisationName(e.target.value)}
               className="form-input"
-              placeholder="e.g. Self / Westminster Hospitality Partners"
               disabled={isSubmitting}
             />
-          </div>
-
-          <div className="form-disclosure" role="note">
-            <p>
-              This demo saves your details only in this browser. Your request will not be sent to Safe Travel Meal Kits Limited.
-            </p>
           </div>
 
           <div className="form-actions">
