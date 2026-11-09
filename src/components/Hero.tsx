@@ -9,12 +9,11 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
     <section id="home" className="hero-section" aria-labelledby="hero-heading">
       <div className="section-container hero-container">
         <div className="hero-content">
-          <div className="pilot-tag-row">
-            <span className="pilot-stage-pill">
-              <span className="pulse-dot" aria-hidden="true" />
-              London Pilot Phase
-            </span>
-            <span className="service-scope-text">Central London &amp; Key Transit</span>
+          <div className="hero-pill-badge" role="status">
+            <span className="pulse-indicator" aria-hidden="true" />
+            <span className="pill-text">London Pilot Phase</span>
+            <span className="pill-divider" aria-hidden="true">•</span>
+            <span className="pill-scope">Central London &amp; Transit Corridors</span>
           </div>
 
           <h1 id="hero-heading" className="hero-title">
@@ -32,13 +31,10 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
           <div className="hero-cta-group">
             <button
               type="button"
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg hero-cta-btn"
               onClick={(e) => onRequestPilot(e.currentTarget)}
             >
-              Request a Pilot
-            </button>
-            <a href="#how-it-works" className="btn btn-outline btn-lg">
-              See how it works
+              <span>Request a Pilot</span>
               <svg
                 width="16"
                 height="16"
@@ -50,75 +46,102 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
                 strokeLinejoin="round"
                 aria-hidden="true"
               >
+                <path d="M3 8h10M9 4l4 4-4 4" />
+              </svg>
+            </button>
+            <a href="#how-it-works" className="btn btn-outline btn-lg">
+              <span>See how it works</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <path d="M6 12l4-4-4-4" />
               </svg>
             </a>
           </div>
 
-          <div className="hero-micro-points">
-            <div className="micro-point">
-              <span className="micro-icon" aria-hidden="true">✓</span>
-              <span>Dedicated single-profile kitchen sessions</span>
+          <div className="hero-trust-bar">
+            <div className="trust-item">
+              <span className="trust-check" aria-hidden="true">✓</span>
+              <span className="trust-label">Single-profile exclusive kitchen sessions</span>
             </div>
-            <div className="micro-point">
-              <span className="micro-icon" aria-hidden="true">✓</span>
-              <span>Tamper-evident hash-linked chain of custody</span>
+            <div className="trust-item">
+              <span className="trust-check" aria-hidden="true">✓</span>
+              <span className="trust-label">Hash-linked chain of custody per kit</span>
             </div>
-            <div className="micro-point">
-              <span className="micro-icon" aria-hidden="true">✓</span>
-              <span>Delivered chilled to London front desks &amp; venues</span>
+            <div className="trust-item">
+              <span className="trust-check" aria-hidden="true">✓</span>
+              <span className="trust-label">Delivered chilled (2°C – 4°C) to London front desks</span>
             </div>
           </div>
         </div>
 
-        <div className="hero-visual" aria-label="Visual presentation of sealed travel meal pouch beside an illustrative London itinerary">
-          <div className="hero-composite">
-            {/* Sealed Meal Pouch Graphic */}
+        <div className="hero-visual-wrapper">
+          <div className="hero-visual-canvas" role="region" aria-label="Visual presentation of sealed travel meal pouch beside an illustrative London itinerary">
+            {/* Sealed Meal Pouch Card */}
             <div className="meal-pouch-card" role="img" aria-label="Sealed, labelled travel meal pouch with tamper-evident seal and batch label">
               <div className="pouch-header-seal">
-                <div className="tamper-evident-strip">
-                  <span className="tamper-icon" aria-hidden="true">🔒</span>
-                  <span className="tamper-code">TAMPER-EVIDENT SEAL: #STM-8842-X</span>
+                <div className="tamper-seal-chip">
+                  <span className="seal-lock-icon" aria-hidden="true">🔒</span>
+                  <span className="seal-ref font-mono">TAMPER-EVIDENT SEAL: #STM-8842-X</span>
                 </div>
+                <span className="seal-status-tag">CHILLED RELEASE</span>
               </div>
+
               <div className="pouch-body">
-                <div className="pouch-brand-badge">SAFE TRAVEL MEAL KITS</div>
-                <div className="pouch-meal-name">Roasted Herb Chicken &amp; Spiced Quinoa</div>
-                <div className="pouch-allergen-tag">
-                  <span className="tag-label">ALLERGEN EXCLUSION SET 2</span>
-                  <span className="tag-desc">Peanut, Tree Nut &amp; Sesame Free</span>
+                <div className="pouch-brand-row">
+                  <span className="pouch-brand-kicker">SAFE TRAVEL MEAL KITS</span>
+                  <span className="pouch-run-pill font-mono">BATCH LON-ES2-0824</span>
                 </div>
+
+                <div className="pouch-meal-name">
+                  Roasted Herb Chicken &amp; Spiced Quinoa
+                </div>
+
+                <div className="pouch-allergen-tag">
+                  <div className="tag-inner">
+                    <span className="tag-set-title">EXCLUSION SET 2</span>
+                    <span className="tag-set-profile">Peanut, Tree Nut &amp; Sesame Excluded</span>
+                  </div>
+                </div>
+
                 <div className="pouch-specs-grid">
                   <div className="pouch-spec">
-                    <span className="spec-label">Production Batch</span>
-                    <span className="spec-val">LON-ES2-0824</span>
-                  </div>
-                  <div className="pouch-spec">
                     <span className="spec-label">Environment Swab</span>
-                    <span className="spec-val">Passed #SW-0418</span>
+                    <span className="spec-val spec-val-success">Passed #SW-0418</span>
                   </div>
                   <div className="pouch-spec">
                     <span className="spec-label">Storage Window</span>
-                    <span className="spec-val">Chilled 2°C – 4°C</span>
+                    <span className="spec-val font-mono">Chilled 2°C – 4°C</span>
                   </div>
-                  <div className="pouch-spec">
-                    <span className="spec-label">Ledger Hash</span>
-                    <span className="spec-val font-mono">sha256:4a9c...7e1b</span>
+                  <div className="pouch-spec spec-full-width">
+                    <span className="spec-label">Custody Hash</span>
+                    <span className="spec-val font-mono hash-val">sha256:4a9c8f2...7e1b90d</span>
                   </div>
                 </div>
+
                 <div className="pouch-footer">
                   <div className="pouch-barcode" aria-hidden="true">
-                    <div className="barcode-line w-1" />
-                    <div className="barcode-line w-3" />
-                    <div className="barcode-line w-2" />
-                    <div className="barcode-line w-4" />
-                    <div className="barcode-line w-1" />
-                    <div className="barcode-line w-2" />
-                    <div className="barcode-line w-3" />
-                    <div className="barcode-line w-1" />
-                    <div className="barcode-line w-4" />
+                    <span className="bar b-1" />
+                    <span className="bar b-3" />
+                    <span className="bar b-2" />
+                    <span className="bar b-4" />
+                    <span className="bar b-1" />
+                    <span className="bar b-2" />
+                    <span className="bar b-3" />
+                    <span className="bar b-1" />
+                    <span className="bar b-4" />
+                    <span className="bar b-2" />
+                    <span className="bar b-1" />
                   </div>
-                  <span className="pouch-status-stamp">RELEASED CHILLED</span>
+                  <span className="pouch-verified-stamp">VERIFIED SEALED</span>
                 </div>
               </div>
             </div>
@@ -127,14 +150,14 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
             <div className="hero-itinerary-card" aria-label="Illustrative London trip itinerary card">
               <div className="itinerary-card-header">
                 <div className="itinerary-title-badge">
-                  <span className="badge-bullet" aria-hidden="true" />
-                  <strong>Illustrative London trip</strong>
+                  <span className="amber-dot-pulse" aria-hidden="true" />
+                  <strong className="itinerary-header-label">Illustrative London trip</strong>
                 </div>
                 <span className="itinerary-summary-pill">6 Meals • 2 Handovers</span>
               </div>
 
               <div className="itinerary-timeline-preview">
-                {/* Handover 1 */}
+                {/* Handover Point 1 */}
                 <div className="itinerary-node handover-node">
                   <div className="node-marker amber-marker" aria-hidden="true">
                     <span>H1</span>
@@ -150,11 +173,11 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
                 </div>
 
                 <div className="itinerary-connector" aria-hidden="true">
-                  <div className="connector-line" />
+                  <div className="connector-line-dotted" />
                   <span className="connector-text">Day 1 Breakfast &amp; Transit</span>
                 </div>
 
-                {/* Handover 2 */}
+                {/* Handover Point 2 */}
                 <div className="itinerary-node handover-node">
                   <div className="node-marker amber-marker" aria-hidden="true">
                     <span>H2</span>
@@ -171,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
               </div>
 
               <div className="itinerary-card-footer">
-                <span className="plan-label">Plan matched:</span>
+                <span className="plan-label">Allocated Pack:</span>
                 <span className="plan-name">Solo Traveller Meal Kit (£120)</span>
               </div>
             </div>

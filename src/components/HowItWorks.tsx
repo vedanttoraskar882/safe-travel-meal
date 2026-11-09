@@ -18,7 +18,6 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
     const el = itineraryRef.current;
     if (!el) return;
 
-    // Defensively check prefers-reduced-motion
     if (typeof window.matchMedia === "function") {
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       if (mediaQuery.matches) {
@@ -27,7 +26,6 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
       }
     }
 
-    // Defensively check IntersectionObserver
     if (typeof window.IntersectionObserver === "function") {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -38,7 +36,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0.12 }
       );
 
       observer.observe(el);
@@ -63,25 +61,29 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
           </div>
           <p className="section-lead">
             Follow a single traveller managing severe peanut, tree nut and sesame allergies
-            (Exclusion Set 2) through a two-day Southwark and City of London schedule.
+            (Exclusion Set 2) through a two-day Southwark hotel stay and City meeting schedule.
           </p>
         </div>
 
-        {/* Visual Distinction Banner: 6 Meals vs 2 Handovers */}
-        <div className="meals-vs-handovers-banner" role="region" aria-label="Meals and handovers summary">
-          <div className="mvsh-item mvsh-meals">
-            <div className="mvsh-icon" aria-hidden="true">🍱</div>
-            <div className="mvsh-text">
-              <span className="mvsh-count">6 Meals Planned</span>
-              <span className="mvsh-desc">Covering 6 accepted exposure windows across 48 hours</span>
+        {/* Visual Distinction: 6 Meals vs 2 Handovers */}
+        <div className="meals-vs-handovers-banner" role="region" aria-label="Visual distinction between six meals and two handovers">
+          <div className="mvsh-card mvsh-meals-card">
+            <div className="mvsh-icon-badge" aria-hidden="true">🍱</div>
+            <div className="mvsh-text-group">
+              <span className="mvsh-stat-value tabular-nums">6 Meals Planned</span>
+              <span className="mvsh-stat-label">Accepted exposure windows across 48 hours</span>
             </div>
           </div>
-          <div className="mvsh-divider" aria-hidden="true">delivered in</div>
-          <div className="mvsh-item mvsh-handovers">
-            <div className="mvsh-icon" aria-hidden="true">🤝</div>
-            <div className="mvsh-text">
-              <span className="mvsh-count">2 Physical Handovers</span>
-              <span className="mvsh-desc">Handover 1 at Southwark (3 meals) + Handover 2 in the City (3 meals)</span>
+
+          <div className="mvsh-connector-pill" aria-hidden="true">
+            <span>Delivered In</span>
+          </div>
+
+          <div className="mvsh-card mvsh-handovers-card">
+            <div className="mvsh-icon-badge amber-badge" aria-hidden="true">🤝</div>
+            <div className="mvsh-text-group">
+              <span className="mvsh-stat-value amber-text tabular-nums">2 Physical Handovers</span>
+              <span className="mvsh-stat-label">Handover 1 (Southwark Hotel) • Handover 2 (City Venue)</span>
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
           ref={itineraryRef}
           className={`vertical-itinerary-container ${hasAnimated ? "is-animated" : ""}`}
         >
-          {/* Subtle connecting route line */}
+          {/* Connecting route line */}
           <div className="itinerary-route-track" aria-hidden="true">
             <div className="itinerary-route-progress" />
           </div>
@@ -103,26 +105,26 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
               return (
                 <article
                   key={step.stepNumber}
-                  className={`itinerary-step-card ${isHandover ? "step-handover-highlight" : ""}`}
+                  className={`itinerary-step-card ${isHandover ? "step-handover-card" : ""}`}
                   aria-labelledby={`step-${step.stepNumber}-title`}
                 >
-                  <div className="step-gutter">
-                    <div className={`step-circle ${isHandover ? "handover-circle" : ""}`}>
+                  <div className="step-marker-col">
+                    <div className={`step-circle-indicator ${isHandover ? "amber-circle-indicator" : ""}`}>
                       {isHandover ? (
-                        <span className="handover-num">H{step.stepNumber === 4 ? "1" : "2"}</span>
+                        <span className="handover-num-badge">H{step.stepNumber === 4 ? "1" : "2"}</span>
                       ) : (
-                        <span className="step-num">{step.stepNumber}</span>
+                        <span className="step-num-badge">{step.stepNumber}</span>
                       )}
                     </div>
                   </div>
 
-                  <div className="step-main">
-                    <div className="step-meta-row">
-                      <span className={`step-badge ${isHandover ? "badge-handover" : "badge-standard"}`}>
+                  <div className="step-content-col">
+                    <div className="step-badge-row">
+                      <span className={`step-pill ${isHandover ? "pill-handover" : "pill-standard"}`}>
                         {step.badge}
                       </span>
                       {isHandover && (
-                        <span className="handover-pill-label">
+                        <span className="handover-geo-label">
                           {step.handoverLabel}
                         </span>
                       )}
@@ -137,18 +139,18 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
                     <ul className="step-details-list">
                       {step.details.map((detail, idx) => (
                         <li key={idx}>
-                          <span className="detail-bullet" aria-hidden="true">›</span>
+                          <span className="detail-arrow" aria-hidden="true">›</span>
                           <span>{detail}</span>
                         </li>
                       ))}
                     </ul>
 
                     {isHandover && (
-                      <div className="handover-protocol-callout">
-                        <span className="callout-icon" aria-hidden="true">📍</span>
-                        <div className="callout-text">
-                          <strong>Chain-of-Custody Checkpoint:</strong> Requires reception identity verification,
-                          chilled temperature log (2°C – 4°C), and unbroken security seal registration.
+                      <div className="handover-callout-strip">
+                        <span className="callout-pin" aria-hidden="true">📍</span>
+                        <div className="callout-msg">
+                          <strong>Chain-of-Custody Checkpoint:</strong> Verification of unbroken security seal,
+                          chilled temperature log (2°C – 4°C), and intake sign-off recorded.
                         </div>
                       </div>
                     )}
@@ -169,15 +171,16 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
               aria-expanded={isExclusionPanelOpen}
               aria-controls="exclusion-sets-content"
             >
-              <div className="toggle-header-text">
+              <div className="toggle-info-group">
                 <span className="badge badge-subtle">Formulation Standards</span>
                 <h3 className="toggle-heading">Which allergen profiles are covered?</h3>
                 <p className="toggle-subtext">
                   The planned service operates six distinct exclusion sets produced in isolated kitchen sessions.
                 </p>
               </div>
-              <span className={`accordion-chevron ${isExclusionPanelOpen ? "is-expanded" : ""}`} aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+
+              <span className={`toggle-chevron-icon ${isExclusionPanelOpen ? "is-expanded" : ""}`} aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor">
                   <path
                     fillRule="evenodd"
                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -199,8 +202,8 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
                 <div className="exclusion-sets-grid">
                   {EXCLUSION_SETS.map((set) => (
                     <div key={set.id} className="exclusion-set-item">
-                      <div className="set-item-header">
-                        <span className="set-id-tag">Set {set.id}</span>
+                      <div className="set-header-row">
+                        <span className="set-pill-tag">Set {set.id}</span>
                         <h4 className="set-title">{set.title}</h4>
                       </div>
                       <p className="set-summary">{set.summary}</p>
@@ -209,12 +212,12 @@ export const HowItWorks: React.FC<HowItWorksProps> = ({
                   ))}
                 </div>
 
-                <div className="exclusion-warning-callout" role="note">
-                  <strong>Important Safety Scope:</strong> Set 6 combines all of the
-                  exclusions in sets 1–5 combined. Set 6 does not cover every possible
-                  allergen. Safe Travel Meal Kits Limited avoids claims of “zero risk”,
-                  “guaranteed safe” or “allergen-free for everyone”. Travellers with allergens
-                  outside sets 1–6 are flagged during itinerary evaluation.
+                <div className="exclusion-safety-banner" role="note">
+                  <strong>Important Scope Clarification:</strong> Set 6 combines all of the
+                  exclusions in sets 1–5 combined. Never describe set 6 as covering every
+                  possible allergen. Avoid “zero risk”, “guaranteed safe” and “allergen-free
+                  for everyone”. Travellers with profiles not covered by sets 1–6 are flagged
+                  during order evaluation.
                 </div>
               </div>
             )}

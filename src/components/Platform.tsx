@@ -16,30 +16,68 @@ export const Platform: React.FC = () => {
           </p>
         </div>
 
-        {/* Prototype Today Notice */}
+        {/* Prototype Today Notice Banner */}
         <div className="prototype-status-card" role="region" aria-label="Prototype Status and Planned Capabilities">
           <div className="prototype-status-header">
-            <span className="badge badge-prototype">Prototype today</span>
-            <span className="prototype-date">Version 0.4 • Alpha Architecture</span>
+            <div className="prototype-badge-group">
+              <span className="badge badge-prototype">Prototype today</span>
+              <span className="prototype-env-tag">Alpha Architecture v0.4</span>
+            </div>
+            <span className="prototype-phase-label">Demonstration Environment</span>
           </div>
+
           <div className="prototype-grid">
-            <div className="prototype-col">
-              <h4 className="prototype-col-title">Currently Operational in Prototype</h4>
+            <div className="prototype-col active-col">
+              <div className="prototype-col-header">
+                <span className="col-status-indicator active-indicator" aria-hidden="true" />
+                <h4 className="prototype-col-title">Currently Operational in Prototype</h4>
+              </div>
               <ul className="prototype-feature-list">
-                <li><span className="tick-icon">✓</span> Manual itinerary entry and trip segment mapping</li>
-                <li><span className="tick-icon">✓</span> Fixed-rule identification of exposure windows</li>
-                <li><span className="tick-icon">✓</span> Structured meal planning across 6 exclusion profiles</li>
-                <li><span className="tick-icon">✓</span> Formulaic package pricing calculations</li>
-                <li><span className="tick-icon">✓</span> Test ledger entries and mock hash generation</li>
+                <li>
+                  <span className="feature-check-icon" aria-hidden="true">✓</span>
+                  <span>Manual itinerary entry and trip segment mapping</span>
+                </li>
+                <li>
+                  <span className="feature-check-icon" aria-hidden="true">✓</span>
+                  <span>Fixed-rule identification of exposure windows</span>
+                </li>
+                <li>
+                  <span className="feature-check-icon" aria-hidden="true">✓</span>
+                  <span>Meal planning matched to 6 supported exclusion sets</span>
+                </li>
+                <li>
+                  <span className="feature-check-icon" aria-hidden="true">✓</span>
+                  <span>Calculated kit and subscription pricing models</span>
+                </li>
+                <li>
+                  <span className="feature-check-icon" aria-hidden="true">✓</span>
+                  <span>Test ledger records and local browser verification</span>
+                </li>
               </ul>
             </div>
-            <div className="prototype-col">
-              <h4 className="prototype-col-title">Belonging to Planned Build (Future Release)</h4>
+
+            <div className="prototype-col future-col">
+              <div className="prototype-col-header">
+                <span className="col-status-indicator planned-indicator" aria-hidden="true" />
+                <h4 className="prototype-col-title">Belonging to Planned Build (Future Release)</h4>
+              </div>
               <ul className="prototype-feature-list future-list">
-                <li><span className="future-icon">⏳</span> Weighted multi-factor scoring will evaluate live venue risks</li>
-                <li><span className="future-icon">⏳</span> Automated production scheduling will coordinate blast-freeze runs</li>
-                <li><span className="future-icon">⏳</span> A production ledger with cryptographically verifiable export will track live batches</li>
-                <li><span className="future-icon">⏳</span> Phone-based handover capture will record venue desk signatures and seal integrity</li>
+                <li>
+                  <span className="feature-future-icon" aria-hidden="true">⏳</span>
+                  <span>Weighted multi-factor scoring will evaluate dynamic venue risks</span>
+                </li>
+                <li>
+                  <span className="feature-future-icon" aria-hidden="true">⏳</span>
+                  <span>Automated production scheduling will manage blast-freeze cycles</span>
+                </li>
+                <li>
+                  <span className="feature-future-icon" aria-hidden="true">⏳</span>
+                  <span>A production ledger with export and verification will authenticate live batches</span>
+                </li>
+                <li>
+                  <span className="feature-future-icon" aria-hidden="true">⏳</span>
+                  <span>Phone-based handover capture will record front desk intake and seal scans</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -50,106 +88,132 @@ export const Platform: React.FC = () => {
           {/* Component A */}
           <div className="platform-card">
             <div className="platform-card-header">
-              <span className="component-number">Component A</span>
+              <span className="component-kicker">Component A</span>
               <h3 className="platform-card-title">Exposure engine</h3>
-              <p className="platform-card-tagline">“Find the meal occasions that need attention”</p>
+              <p className="platform-card-quote">“Find the meal occasions that need attention”</p>
             </div>
-            <div className="platform-card-content">
+
+            <div className="platform-card-body">
               <p>
                 The proposed engine maps flights, hotel stays, meetings and events onto a
-                continuous timeline. It assesses each meal occasion using five key factors:
+                timeline. It assesses each meal occasion using five key factors:
               </p>
+
               <ol className="factors-list">
-                <li><strong>Venue type:</strong> In-room, banqueting hall, transit terminal</li>
-                <li><strong>Service style:</strong> Plated, buffet, unvetted working lunch</li>
-                <li><strong>Transit and timing:</strong> Buffer periods and departure transfers</li>
-                <li><strong>Declared allergen profile:</strong> Sensitivity threshold vs room risk</li>
-                <li><strong>Likelihood of itinerary change:</strong> Delay vulnerability</li>
+                <li>
+                  <strong>Venue type:</strong> In-room, banqueting hall, transit terminal
+                </li>
+                <li>
+                  <strong>Service style:</strong> Plated, buffet, unvetted working lunch
+                </li>
+                <li>
+                  <strong>Transit and timing:</strong> Buffer periods and departure transfers
+                </li>
+                <li>
+                  <strong>Declared allergen profile:</strong> Sensitivity threshold vs room risk
+                </li>
+                <li>
+                  <strong>Likelihood of itinerary change:</strong> Delay vulnerability
+                </li>
               </ol>
+
               <p>
                 An occasion above the relevant threshold becomes an <strong>“exposure window”</strong>.
-                The traveller can review, accept or remove it. When a journey changes, the
-                planned engine will reassess all affected occasions automatically.
+                The traveller can accept or remove it. The planned engine can reassess
+                affected occasions when a journey changes.
               </p>
             </div>
-            <div className="simulated-preview">
-              <div className="simulated-tag">Simulated Assessment Output</div>
-              <div className="simulated-metric">
-                <span className="sim-lbl">Day 2 Working Lunch:</span>
-                <span className="sim-val danger">Exposure Window Identified (Score 4.2 / 5.0)</span>
+
+            <div className="simulated-chip-panel" aria-label="Simulated exposure output">
+              <div className="simulated-chip-header">
+                <span className="sim-chip-tag">Simulated Assessment Output</span>
               </div>
-              <div className="simulated-sub">Unvetted buffet catering detected • Recommend kit allocation</div>
+              <div className="simulated-metric-line">
+                <span className="sim-lbl">Day 2 Working Lunch:</span>
+                <span className="sim-status danger-pill">Exposure Window Flagged</span>
+              </div>
+              <p className="sim-caption">
+                Unvetted corporate buffet detected • Risk score exceeds safety threshold
+              </p>
             </div>
           </div>
 
           {/* Component B */}
           <div className="platform-card">
             <div className="platform-card-header">
-              <span className="component-number">Component B</span>
+              <span className="component-kicker">Component B</span>
               <h3 className="platform-card-title">Run scheduler</h3>
-              <p className="platform-card-tagline">“Match accepted meals to checked stock”</p>
+              <p className="platform-card-quote">“Match accepted meals to checked stock”</p>
             </div>
-            <div className="platform-card-content">
+
+            <div className="platform-card-body">
               <p>
-                Each production run serves exactly one defined allergen exclusion set.
+                Each production run serves one defined allergen exclusion set.
               </p>
               <p>
                 In the planned process, meals are cooked in an exclusive-use kitchen
-                session, blast-frozen, sealed, labelled and held as verified stock for
-                that set.
+                session, blast-frozen, sealed, labelled and held as stock for that set.
               </p>
               <p>
-                The scheduler is designed to check stock availability, required lead times,
-                mandatory cleaning and swab clearance between runs, and handover courier
-                feasibility. Kits are released chilled. A window that cannot be fulfilled
-                is flagged before confirmation.
+                The scheduler is designed to check stock, lead time, clearance between
+                runs and handover feasibility. Kits are released chilled. A window that
+                cannot be fulfilled should be flagged before confirmation.
               </p>
             </div>
-            <div className="simulated-preview">
-              <div className="simulated-tag">Simulated Scheduling Check</div>
-              <div className="simulated-metric">
-                <span className="sim-lbl">Run Slot Lon-B2:</span>
-                <span className="sim-val success">Stock Available • Clearance Swab Verified</span>
+
+            <div className="simulated-chip-panel" aria-label="Simulated run scheduler check">
+              <div className="simulated-chip-header">
+                <span className="sim-chip-tag">Simulated Scheduling Check</span>
               </div>
-              <div className="simulated-sub">Exclusion Set 2 stock allocated • Courier handover window locked</div>
+              <div className="simulated-metric-line">
+                <span className="sim-lbl">Batch LON-ES2-0824:</span>
+                <span className="sim-status success-pill">Stock &amp; Swab Verified</span>
+              </div>
+              <p className="sim-caption">
+                Exclusion Set 2 verified inventory allocated • Courier window locked
+              </p>
             </div>
           </div>
 
           {/* Component C */}
           <div className="platform-card">
             <div className="platform-card-header">
-              <span className="component-number">Component C</span>
+              <span className="component-kicker">Component C</span>
               <h3 className="platform-card-title">Chain-of-custody ledger</h3>
-              <p className="platform-card-tagline">“Follow a kit from its run to its recipient”</p>
+              <p className="platform-card-quote">“Follow a kit from its run to its recipient”</p>
             </div>
-            <div className="platform-card-content">
+
+            <div className="platform-card-body">
               <p>
-                The planned record connects each individual kit to its production run,
-                exclusion set, tamper-evident seal number, handling events, timestamps and
-                geographic locations.
+                The planned record connects each kit to its production run, exclusion set,
+                seal number, handling events, timestamps and locations.
               </p>
               <p>
-                It links to supplier declarations, kitchen clearance swab references and
-                release checks. In our public copy, this is a <strong>hash-linked record</strong>:
-                each entry cryptographically references the previous entry through a hash.
+                It links to supplier declarations, clearance swab references and release
+                checks. In public copy, this operates as a <strong>hash-linked record</strong>:
+                each entry references the previous entry through a hash.
               </p>
               <p>
-                A correction adds a new timestamped entry while strictly preserving the
-                earlier entry. Any broken seal or temperature exception becomes immediately
-                visible in the record.
+                A correction adds a new entry and preserves the earlier entry. A broken
+                seal or temperature exception becomes visible in the record.
               </p>
             </div>
-            <div className="simulated-preview">
-              <div className="simulated-tag">Simulated Hash-Linked Entry</div>
-              <div className="simulated-metric">
-                <span className="sim-lbl">Prev Hash:</span>
-                <span className="sim-val font-mono">0a7f4...c902</span>
+
+            <div className="simulated-chip-panel" aria-label="Simulated ledger entry">
+              <div className="simulated-chip-header">
+                <span className="sim-chip-tag">Simulated Hash-Linked Entry</span>
               </div>
-              <div className="simulated-metric">
-                <span className="sim-lbl">This Hash:</span>
-                <span className="sim-val font-mono">8e2d1...b47a</span>
+              <div className="sim-hash-row">
+                <span className="hash-label">Prev Hash:</span>
+                <span className="hash-code font-mono">0a7f4...c902</span>
               </div>
-              <div className="simulated-sub">Event: Hotel Desk Intake • Seal Intact • 3.2°C</div>
+              <div className="sim-hash-row">
+                <span className="hash-label">This Hash:</span>
+                <span className="hash-code font-mono">8e2d1...b47a</span>
+              </div>
+              <p className="sim-caption">
+                Event: Hotel Desk Intake • Seal #STM-8842-X Intact • Chilled 3.2°C
+              </p>
             </div>
           </div>
         </div>
@@ -157,54 +221,59 @@ export const Platform: React.FC = () => {
         {/* Foundation Rule Base: Journey Allergen Assurance Protocol */}
         <div className="foundation-protocol-box">
           <div className="protocol-header">
-            <div className="protocol-eyebrow">Foundational Layer</div>
+            <span className="protocol-eyebrow">Foundation Architecture</span>
             <h3 className="protocol-title">
               Journey Allergen Assurance Protocol
             </h3>
             <p className="protocol-subtitle">
-              The shared versioned rule base underlying all three software components.
+              The shared, versioned operational rule base underlying all three software components.
             </p>
           </div>
 
           <div className="protocol-rules-grid">
             <div className="protocol-rule-item">
-              <div className="rule-badge">01. Sanitation</div>
+              <span className="rule-step-num">01. Sanitation</span>
               <h4>Signed Clearance &amp; Deep Cleaning</h4>
-              <p>Full room washdown and documented clearance before any allergen exclusion session begins.</p>
+              <p>Signed clearance and deep cleaning between sets to prevent airborne and surface cross-contact.</p>
             </div>
+
             <div className="protocol-rule-item">
-              <div className="rule-badge">02. Equipment</div>
-              <h4>Dedicated Colour-Controlled Tools</h4>
-              <p>Colour-segregated prep equipment, cookware, and vacuum sealing units strictly isolated per set.</p>
+              <span className="rule-step-num">02. Segregation</span>
+              <h4>Dedicated Colour-Controlled Equipment</h4>
+              <p>Colour-segregated kitchen utensils, chopping blocks, cookware and sealing gear dedicated strictly per set.</p>
             </div>
+
             <div className="protocol-rule-item">
-              <div className="rule-badge">03. Verification</div>
+              <span className="rule-step-num">03. Verification</span>
               <h4>Pre-Run Verification Swabs</h4>
-              <p>Rapid lateral flow and ATP swab checks executed and logged before ingredient unpacking.</p>
+              <p>Surface and equipment verification swabs performed and recorded before ingredients enter the workspace.</p>
             </div>
+
             <div className="protocol-rule-item">
-              <div className="rule-badge">04. Ingredients</div>
+              <span className="rule-step-num">04. Traceability</span>
               <h4>Batch-Level Ingredient Checks</h4>
-              <p>Formal supplier declaration reviews and batch tracking for each individual raw ingredient.</p>
+              <p>Supplier declaration verification and raw ingredient batch certificates validated prior to session clearance.</p>
             </div>
+
             <div className="protocol-rule-item">
-              <div className="rule-badge">05. Security</div>
+              <span className="rule-step-num">05. Security</span>
               <h4>Tamper-Evident Sealing</h4>
-              <p>Serialized, numbered tamper-evident bands applied immediately following chilled release.</p>
+              <p>Individually serialized tamper-evident security bands sealed onto each kit immediately following chilled blast.</p>
             </div>
+
             <div className="protocol-rule-item">
-              <div className="rule-badge">06. Venues</div>
-              <h4>Written Venue Acceptance</h4>
-              <p>Hotel and venue duty staff sign written acceptance of chilled storage conditions (2°C – 4°C).</p>
+              <span className="rule-step-num">06. Venues</span>
+              <h4>Written Acceptance by Receiving Venues</h4>
+              <p>Written acceptance of storage (2°C – 4°C) and release conditions by hotel and venue duty managers upon intake.</p>
             </div>
           </div>
 
           <div className="protocol-footer">
-            <div className="version-tag">
+            <div className="protocol-version-note">
               <strong>Version Control:</strong> Protocol v2.1-UK (Adopted 14 Oct 2024 • Revisions include updated swab thresholds for sesame derivatives)
             </div>
-            <div className="safety-disclaimer">
-              <em>Note:</em> A digital hash-linked record verifies handling adherence and chain of custody; it does not constitute a biological guarantee against every conceivable trace allergen.
+            <div className="protocol-safety-disclaimer">
+              <em>Safety Note:</em> While the hash-linked record verifies procedural adherence, a digital record does not prove the absolute absence of an allergen.
             </div>
           </div>
         </div>

@@ -15,9 +15,11 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
       <div className="section-container footer-container">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="footer-company-name">Safe Travel Meal Kits Limited</span>
+            <h3 className="footer-company-name">Safe Travel Meal Kits Limited</h3>
             <p className="footer-tagline">
-              Developing advance allergen mapping, dedicated kitchen runs, and verified handovers for London travel.
+              Connecting meal occasions across London hotel stays, conference venues, and
+              airport transit with advance allergen mapping, dedicated single-profile
+              kitchen sessions, and recorded handovers.
             </p>
           </div>
 
@@ -36,11 +38,12 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
           <div className="footer-action-col">
             <h4 className="footer-heading">Pilot Registration</h4>
             <p className="footer-action-text">
-              Interested in participating in London hotel, venue or team pilot runs?
+              Register interest for planned London hotel front desk, conference venue, or
+              corporate team pilot handovers.
             </p>
             <button
               type="button"
-              className="btn btn-outline-light btn-sm"
+              className="btn btn-outline-light btn-sm footer-cta-btn"
               onClick={(e) => onRequestPilot(e.currentTarget)}
             >
               Request a Pilot
@@ -49,11 +52,9 @@ export const Footer: React.FC<FooterProps> = ({ onRequestPilot }) => {
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-legal">
-            Safe Travel Meal Kits Limited • London Pilot Demonstration
-          </p>
-          <a href="#home" onClick={scrollToTop} className="back-to-top-link">
-            Back to top
+          <p className="footer-legal">Safe Travel Meal Kits Limited</p>
+          <a href="#home" onClick={scrollToTop} className="back-to-top-link" aria-label="Back to top of page">
+            <span>Back to top</span>
             <svg
               width="16"
               height="16"

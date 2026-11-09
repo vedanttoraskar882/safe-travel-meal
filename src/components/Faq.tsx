@@ -7,7 +7,7 @@ interface FaqProps {
 
 export const Faq: React.FC<FaqProps> = ({ onOpenExclusionPanel }) => {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({
-    "faq-location": true // default first one open for discovery
+    "faq-location": true // default first open for discovery
   });
 
   const toggleItem = (id: string) => {
@@ -30,32 +30,31 @@ export const Faq: React.FC<FaqProps> = ({ onOpenExclusionPanel }) => {
     <section id="faq" className="faq-section" aria-labelledby="faq-heading">
       <div className="section-container">
         <div className="section-header">
-          <span className="section-eyebrow">Common Enquiries</span>
+          <span className="section-eyebrow">Common Questions</span>
           <h2 id="faq-heading" className="section-title">
             Frequently Asked Questions
           </h2>
           <p className="section-lead">
-            Key details regarding the planned London pilot, operational parameters, and
-            allergen exclusion boundaries.
+            Clear facts regarding pilot parameters, supported allergen profiles, handover mechanics, and local data storage.
           </p>
         </div>
 
-        <div className="faq-accordion" role="presentation">
+        <div className="faq-accordion-container" role="presentation">
           {FAQ_ITEMS.map((item) => {
             const isOpen = !!openItems[item.id];
 
             return (
-              <div key={item.id} className="faq-item">
+              <div key={item.id} className={`faq-card ${isOpen ? "is-active" : ""}`}>
                 <button
                   id={`faq-btn-${item.id}`}
                   type="button"
-                  className="faq-trigger"
+                  className="faq-question-button"
                   onClick={() => toggleItem(item.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${item.id}`}
                 >
-                  <span className="faq-question-text">{item.question}</span>
-                  <span className={`faq-chevron ${isOpen ? "is-open" : ""}`} aria-hidden="true">
+                  <span className="faq-question-label">{item.question}</span>
+                  <span className={`faq-icon-rotator ${isOpen ? "is-expanded" : ""}`} aria-hidden="true">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                       <path
                         fillRule="evenodd"
@@ -71,18 +70,18 @@ export const Faq: React.FC<FaqProps> = ({ onOpenExclusionPanel }) => {
                     id={`faq-answer-${item.id}`}
                     role="region"
                     aria-labelledby={`faq-btn-${item.id}`}
-                    className="faq-content"
+                    className="faq-answer-panel"
                   >
-                    <p className="faq-answer-p">{item.answerText}</p>
+                    <p className="faq-answer-text">{item.answerText}</p>
 
                     {item.linkToExclusionSets && (
-                      <div className="faq-action-row">
+                      <div className="faq-panel-link-row">
                         <a
                           href="#exclusion-sets-panel"
                           onClick={handleExclusionLinkClick}
-                          className="faq-inline-link"
+                          className="faq-jump-link"
                         >
-                          View the 6 planned exclusion sets
+                          <span>View the 6 planned exclusion sets</span>
                           <span aria-hidden="true"> →</span>
                         </a>
                       </div>

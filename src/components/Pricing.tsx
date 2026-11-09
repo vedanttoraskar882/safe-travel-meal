@@ -15,44 +15,51 @@ export const Pricing: React.FC<PricingProps> = ({ onRequestPilot }) => {
             Meal kits and pricing for the London pilot
           </h2>
           <p className="section-lead">
-            Indicative pilot pricing referenced in our initial pilot-interest letters,
+            Product prices indicated in the business plan’s pilot-interest letters,
             tailored for London journeys across individual, group and employer travel.
           </p>
         </div>
 
-        {/* Intended Users & Service Area Scope */}
+        {/* Intended Users & Geographic Reach */}
         <div className="pricing-context-grid">
           <div className="context-card">
             <h3 className="context-title">Intended Users</h3>
             <ul className="context-bullets">
-              <li><strong>Individual Travellers:</strong> Independent business or leisure visitors managing verified allergies.</li>
-              <li><strong>Families &amp; Groups:</strong> Coordinated bookings requiring shared exclusion verification.</li>
-              <li><strong>Frequent Travellers:</strong> Regular London commuters or recurring international guests.</li>
-              <li><strong>Employers &amp; Corporate Teams:</strong> Companies arranging duty-of-care team travel and offsites.</li>
+              <li>
+                <strong>Individual Travellers:</strong> Independent business or leisure visitors managing verified allergies.
+              </li>
+              <li>
+                <strong>Families &amp; Groups:</strong> Coordinated bookings requiring shared exclusion verification.
+              </li>
+              <li>
+                <strong>Frequent Travellers:</strong> Regular London commuters or recurring international guests.
+              </li>
+              <li>
+                <strong>Employers Arranging Team Travel:</strong> Companies coordinating duty-of-care team itineraries.
+              </li>
             </ul>
           </div>
+
           <div className="context-card">
-            <h3 className="context-title">Pilot Channels &amp; Geographic Area</h3>
+            <h3 className="context-title">Pilot Channels &amp; Service Area</h3>
             <p className="context-body">
-              Hotels, corporate venues and travel management agencies are potential pilot
-              participants or distribution channels.
+              Hotels, venues and travel agencies are potential pilot participants or distribution channels.
             </p>
             <div className="service-area-callout">
-              <span className="geo-pin" aria-hidden="true">📍</span>
-              <div>
-                <strong>Initial Planned Service Area:</strong> Greater London hotels,
-                meeting venues, and London airports (Heathrow, City, Gatwick transit
-                corridors).
+              <span className="geo-icon" aria-hidden="true">📍</span>
+              <div className="service-area-text">
+                <strong>Initial Planned Service Area:</strong> London hotels, venues,
+                and London airports (Heathrow, City, Gatwick transit corridors).
               </div>
             </div>
-            <p className="context-subnote">
-              Note: The pilot phase focuses strictly on the London territory; nationwide delivery is not offered at this stage.
+            <p className="context-note-fine">
+              Note: The pilot phase focuses exclusively on the London service area; nationwide delivery is not offered at this stage.
             </p>
           </div>
         </div>
 
         {/* Desktop Comparison Table */}
-        <div className="pricing-table-desktop-wrapper" role="region" aria-label="Meal kits comparison table">
+        <div className="pricing-table-wrapper" role="region" aria-label="Meal kits and pricing comparison table">
           <table className="pricing-table">
             <thead>
               <tr>
@@ -67,24 +74,24 @@ export const Pricing: React.FC<PricingProps> = ({ onRequestPilot }) => {
               {PRICING_PRODUCTS.map((prod) => (
                 <tr key={prod.id} className="pricing-row">
                   <td className="td-product">
-                    <span className="product-name">{prod.name}</span>
+                    <span className="product-name-text">{prod.name}</span>
                     {prod.note && (
-                      <span className="product-inline-note">{prod.note}</span>
+                      <span className="product-inline-fee-note">{prod.note}</span>
                     )}
                   </td>
                   <td className="td-price tabular-nums">
-                    <span className="price-amount">{prod.price}</span>
+                    <span className="price-tag-value">{prod.price}</span>
                   </td>
                   <td className="td-meals tabular-nums">
-                    <span className="cell-metric">{prod.meals}</span>
-                    <span className="cell-metric-unit"> {prod.meals === 1 ? "meal" : "meals"}</span>
+                    <span className="metric-figure">{prod.meals}</span>
+                    <span className="metric-unit"> {prod.meals === 1 ? "meal" : "meals"}</span>
                   </td>
                   <td className="td-handovers tabular-nums">
-                    <span className="cell-metric amber-text">{prod.handovers}</span>
-                    <span className="cell-metric-unit"> {prod.handovers === 1 ? "handover" : "handovers"}</span>
+                    <span className="metric-figure amber-metric">{prod.handovers}</span>
+                    <span className="metric-unit"> {prod.handovers === 1 ? "handover" : "handovers"}</span>
                   </td>
                   <td className="td-desc">
-                    <span>{prod.description}</span>
+                    <span className="desc-copy">{prod.description}</span>
                   </td>
                 </tr>
               ))}
@@ -95,32 +102,32 @@ export const Pricing: React.FC<PricingProps> = ({ onRequestPilot }) => {
         {/* Mobile Stacked Pricing Cards */}
         <div className="pricing-cards-mobile" role="region" aria-label="Meal kits stacked pricing">
           {PRICING_PRODUCTS.map((prod) => (
-            <article key={prod.id} className="mobile-price-card">
+            <article key={prod.id} className="mobile-pricing-card">
               <div className="mobile-card-top">
-                <h3 className="mobile-product-name">{prod.name}</h3>
-                <div className="mobile-price-value tabular-nums">{prod.price}</div>
+                <h3 className="mobile-product-title">{prod.name}</h3>
+                <div className="mobile-price-badge tabular-nums">{prod.price}</div>
               </div>
 
               <p className="mobile-product-desc">{prod.description}</p>
 
-              <div className="mobile-specs-row">
-                <div className="mobile-spec-item">
-                  <span className="spec-item-label">Meals</span>
-                  <span className="spec-item-val tabular-nums">
+              <div className="mobile-meta-grid">
+                <div className="mobile-meta-cell">
+                  <span className="meta-cell-label">Meals</span>
+                  <span className="meta-cell-val tabular-nums">
                     {prod.meals} {prod.meals === 1 ? "Meal" : "Meals"}
                   </span>
                 </div>
-                <div className="mobile-spec-item amber-spec">
-                  <span className="spec-item-label">Handovers</span>
-                  <span className="spec-item-val tabular-nums">
+                <div className="mobile-meta-cell amber-cell">
+                  <span className="meta-cell-label">Handovers</span>
+                  <span className="meta-cell-val tabular-nums">
                     {prod.handovers} {prod.handovers === 1 ? "Handover" : "Handovers"}
                   </span>
                 </div>
               </div>
 
               {prod.note && (
-                <div className="mobile-card-note">
-                  <span className="note-icon" aria-hidden="true">ℹ</span>
+                <div className="mobile-note-callout">
+                  <span className="note-symbol" aria-hidden="true">ℹ</span>
                   <span>{prod.note}</span>
                 </div>
               )}
@@ -128,31 +135,28 @@ export const Pricing: React.FC<PricingProps> = ({ onRequestPilot }) => {
           ))}
         </div>
 
-        {/* Employer Account Setup Note */}
-        <div className="pricing-bottom-notice" role="note">
+        {/* Employer Setup Fee Notice */}
+        <div className="pricing-subnote-box" role="note">
           <p>
-            Employer accounts have a £250 set-up fee. All meal kit figures represent
-            indicative pilot tariffs per kit or subscription period.
+            Employer accounts have a £250 set-up fee. All indicated tariffs reflect pilot-stage commercial models.
           </p>
         </div>
 
-        {/* Single Request a Pilot Button */}
-        <div className="pricing-cta-container">
-          <div className="cta-inner-card">
-            <div className="cta-copy">
-              <h3 className="cta-heading">Interested in participating in our London pilot?</h3>
-              <p className="cta-subtext">
-                We are currently reviewing candidate hotels, venues, and frequent traveller groups.
-              </p>
-            </div>
-            <button
-              type="button"
-              className="btn btn-primary btn-lg"
-              onClick={(e) => onRequestPilot(e.currentTarget)}
-            >
-              Request a Pilot
-            </button>
+        {/* Single Call to Action Button */}
+        <div className="pricing-action-card">
+          <div className="action-card-text">
+            <h3 className="action-card-heading">Register for pilot meal kit planning</h3>
+            <p className="action-card-sub">
+              Now reviewing candidate London hotels, corporate offsites, and frequent traveller accounts.
+            </p>
           </div>
+          <button
+            type="button"
+            className="btn btn-primary btn-lg"
+            onClick={(e) => onRequestPilot(e.currentTarget)}
+          >
+            Request a Pilot
+          </button>
         </div>
       </div>
     </section>

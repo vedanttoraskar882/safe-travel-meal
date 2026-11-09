@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface HeaderProps {
   onRequestPilot: (triggerBtn: HTMLElement) => void;
@@ -6,6 +6,27 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onRequestPilot }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Prevent background scrolling when mobile menu is active
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   const handleNavClick = () => {
     setMobileMenuOpen(false);
@@ -21,17 +42,16 @@ export const Header: React.FC<HeaderProps> = ({ onRequestPilot }) => {
       <a href="#home" className="skip-link">
         Skip to main content
       </a>
-      <header className="site-header" role="banner">
+      <header
+        className={`site-header ${scrolled ? "is-scrolled" : ""}`}
+        role="banner"
+      >
         <div className="header-container">
-          <a href="#home" className="brand-link" aria-label="Safe Travel Meal Kits Limited - Home">
-            <span className="brand-mark" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <rect x="3" y="5" width="18" height="15" rx="3" />
-                <path d="M3 10h18" />
-                <path d="M9 10v10" />
-                <circle cx="15" cy="15" r="2" fill="currentColor" fillOpacity="0.2" />
-              </svg>
-            </span>
+          <a
+            href="#home"
+            className="brand-link"
+            aria-label="Safe Travel Meal Kits Limited - Home"
+          >
             <span className="brand-text">
               <span className="brand-name">Safe Travel Meal Kits</span>
               <span className="brand-subtitle">London Pilot</span>
@@ -43,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestPilot }) => {
             className="mobile-nav-toggle"
             aria-controls="primary-navigation"
             aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="hamburger-box" aria-hidden="true">
@@ -79,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ onRequestPilot }) => {
               </li>
               <li>
                 <a href="#pricing" onClick={handleNavClick} className="nav-link">
-                  Market & Pricing
+                  Market &amp; Pricing
                 </a>
               </li>
               <li>
