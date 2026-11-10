@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
               <div className="pouch-header-seal">
                 <div className="tamper-seal-chip">
                   <span className="seal-lock-icon" aria-hidden="true">🔒</span>
-                  <span className="seal-ref font-mono">TAMPER-EVIDENT SEAL: #STM-8842-X</span>
+                  <span className="seal-ref tabular-nums">TAMPER-EVIDENT SEAL: #STM-8842-X</span>
                 </div>
                 <span className="seal-status-tag">CHILLED RELEASE</span>
               </div>
@@ -98,7 +98,7 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
               <div className="pouch-body">
                 <div className="pouch-brand-row">
                   <span className="pouch-brand-kicker">SAFE TRAVEL MEAL KITS</span>
-                  <span className="pouch-run-pill font-mono">BATCH LON-ES2-0824</span>
+                  <span className="pouch-run-pill tabular-nums">BATCH LON-ES2-0824</span>
                 </div>
 
                 <div className="pouch-meal-name">
@@ -115,11 +115,11 @@ export const Hero: React.FC<HeroProps> = ({ onRequestPilot }) => {
                 <div className="pouch-specs-grid">
                   <div className="pouch-spec">
                     <span className="spec-label">Environment Swab</span>
-                    <span className="spec-val spec-val-success">Passed #SW-0418</span>
+                    <span className="spec-val spec-val-success tabular-nums">Passed #SW-0418</span>
                   </div>
                   <div className="pouch-spec">
                     <span className="spec-label">Storage Window</span>
-                    <span className="spec-val font-mono">Chilled 2°C – 4°C</span>
+                    <span className="spec-val tabular-nums">Chilled 2°C – 4°C</span>
                   </div>
                   <div className="pouch-spec spec-full-width">
                     <span className="spec-label">Custody Hash</span>
